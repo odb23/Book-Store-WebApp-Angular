@@ -1,0 +1,84 @@
+<section>
+  <div>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add new book</h4>
+      <button type="button" class="btn-close" (click)="close()"></button>
+    </div>
+
+    <form [formGroup]="bookForm" (ngSubmit)="saveBook()">
+      <div class="modal-body">
+        <div class="form-group mb-3">
+          <div>
+            <label for="title">Title: </label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              id="title"
+              name="title"
+              formControlName="title"
+            />
+          </div>
+          <div
+            *ngIf="
+              bookForm.get('title')?.touched && bookForm.get('title')?.errors
+            "
+            class="text-danger"
+            style="padding-top: 4px"
+          >
+            Title field is empty.
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <div>
+            <label for="description">Description: </label>
+            <input
+              required=""
+              type="text"
+              class="form-control"
+              id="description"
+              name="description"
+              formControlName="description"
+            />
+          </div>
+          <div
+            *ngIf="
+              bookForm.get('description')?.touched &&
+              bookForm.get('description')?.errors
+            "
+            class="text-danger"
+            style="padding-top: 4px"
+          >
+            Description field is empty.
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div *ngIf="saving" class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+
+        <div class="form-group">
+          <button
+            class="btn btn-secondary"
+            (click)="$event.preventDefault(); close()"
+            [disabled]="saving"
+          >
+            Cancel
+          </button>
+
+          <button
+            class="btn btn-primary"
+            type="submit"
+            value="save"
+            [disabled]="bookForm.invalid || saving"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

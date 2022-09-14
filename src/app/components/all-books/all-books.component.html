@@ -1,19 +1,24 @@
+
 <section>
   <h1>Book Store Management App</h1>
-  <button class="btn btn-primary"> Add Book </button>
+  <button class="btn btn-primary" (click)="openModal()"> Add Book </button>
     <table class="table">
         <thead>
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Title</th>
             <th scope="col">Description</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let book of books">
+          <tr *ngFor="let book of books | async">
             <th scope="row">{{ book.id }}</th>
             <td>{{ book.title }}</td>
             <td> {{ book.description}}</td>
+            <td>
+              
+            </td>
           </tr>
         </tbody>
       </table>
