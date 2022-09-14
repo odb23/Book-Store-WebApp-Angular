@@ -1,0 +1,15 @@
+section {
+    width: 1250px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+table {
+    margin-top: 10px;
+    border: 1px solid black;
+}
+
+table thead {
+    background-color: rgba(50, 50, 50, 0.6);
+    color: white;
+}
