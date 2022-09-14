@@ -21,6 +21,13 @@ export class AllBooksComponent implements OnInit, OnDestroy{
     this.books = this.bookService.getBooks()
   }
 
+  public deleteBook (id: number)  {
+    console.log("Got here", id)
+    this.bookService.deleteBook(id).subscribe(
+      res => console.log(res)
+    )
+  }
+
   public openModal(): void {
     this.modalService.open(AddBookComponent)
   }
