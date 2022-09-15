@@ -6,33 +6,47 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 @Component({
   selector: 'app-all-books',
   templateUrl: './all-books.component.html',
-  styleUrls: ['./all-books.component.css']
+  styleUrls: ['./all-books.component.css'],
 })
-export class AllBooksComponent implements OnInit, OnDestroy{
-  public books : any
+export class AllBooksComponent implements OnInit, OnDestroy {
+  public books: any;
 
-  constructor(private bookService: BookService, private modalService : NgbModal) { }
- 
+  constructor(
+    private bookService: BookService,
+    private modalService: NgbModal
+  ) {}
+
   ngOnInit(): void {
-    this.getBooks()
+    this.getBooks();
   }
 
-  private getBooks() : void {
-    this.books = this.bookService.getBooks()
+  private getBooks(): void {
+    this.books = this.bookService.getBooks();
   }
 
-  public deleteBook (id: number)  {
-    console.log("Got here", id)
-    this.bookService.deleteBook(id).subscribe(
-      res => console.log(res)
-    )
+  public deleteBook(id: number) {
+    console.log('Got here', id);
+    this.bookService.deleteBook(id).subscribe((res) => console.log(res));
   }
 
-  public openModal(): void {
-    this.modalService.open(AddBookComponent)
+  public addBook(): void {
+    const modalRef = this.modalService.open(AddBookComponent);
+    let props = {
+      op: 'add-book',
+    };
+
+    modalRef.componentInstance.fromParent = props
   }
 
-  ngOnDestroy(): void {
+  public updateBook(book: any): void {
+    const modalRef = this.modalService.open(AddBookComponent);
+    let props = {
+      op: 'update-book',
+      book: book,
+    };
+
+    modalRef.componentInstance.fromParent = props
   }
 
+  ngOnDestroy(): void {}
 }
