@@ -2,7 +2,7 @@
   <form #loginForm="ngForm" (ngSubmit)="loginUser(loginForm)">
     <h1 class="h3 mb-4 fw-normal">Please sign in</h1>
 
-    <div class="form-floating mb-2">
+    <div class="form-floating mb-3">
       <input
         type="email"
         class="form-control"
@@ -11,12 +11,18 @@
         ngModel
         #email="ngModel"
         name="email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
         required
         placeholder="name@example.com"
+        onblur="console.log(email)"
       />
       <label for="floatingInput">Email address</label>
+      <div *ngIf="email.touched && email.errors" class="text-start mt-1 text-danger fst-italic">
+        <p *ngIf="email.errors?.['required']" class="mb-0">Email is required </p>
+        <p *ngIf="!email.errors?.['required'] && email.errors?.['pattern']" class="mb-0">Please provide a valid email.</p>
+      </div>
     </div>
-    <div class="form-floating mb-2">
+    <div class="form-floating mb-3">
       <input
         required
         type="password"
@@ -28,6 +34,9 @@
         placeholder="Password"
       />
       <label for="floatingPassword">Password</label>
+      <div *ngIf="password.touched && password.errors" class="text-start mt-1 text-danger fst-italic">
+        <p *ngIf="password.errors?.['required']" class="mb-0">Password is required </p>
+      </div>
     </div>
 
     <div class="checkbox mb-3">
@@ -39,6 +48,6 @@
     <button class="w-100 btn btn-lg btn-link" routerLink="/register" (click)="$event.preventDefault()">
       Create an account
     </button>
-    <p class="mt-2 mb-3 text-muted">&copy; {{ year }}</p>
+    <p class="mt-2 mb-3 text-muted">&copy; {{ year }}, ODB SZN...</p>
   </form>
 </main>

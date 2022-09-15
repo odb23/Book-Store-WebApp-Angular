@@ -1,80 +1,139 @@
 <main class="text-center form-signin m-auto mt-5" style="width: 400px">
-    <form #loginForm="ngForm" >
-      <h1 class="h3 mb-4 fw-normal">Create an account</h1>
-  
-      <div class="form-floating mb-3">
-        <input
-          class="form-control"
-          required
-          id="firtName"
-          ngModel
-          #firtName="ngModel"
-          name="firtName"
-          required
-          placeholder="Oluwadamilare"
-        />
-        <label for="floatingInput">First Name</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input
-          class="form-control"
-          required
-          id="lastName"
-          ngModel
-          #lastName="ngModel"
-          name="lastName"
-          required
-          placeholder="Odulaja"
-        />
-        <label for="floatingInput">Last Name</label>
-      </div>
+  <form [formGroup]="createAccountForm">
+    <h1 class="h3 mb-4 fw-normal">Create an account</h1>
 
-      <div class="form-floating mb-3">
-        <input
-          type="email"
-          class="form-control"
-          required
-          id="email"
-          ngModel
-          #email="ngModel"
-          name="email"
-          required
-          placeholder="name@example.com"
-        />
-        <label for="floatingInput">Email address</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input
-          required
-          type="password"
-          class="form-control"
-          id="floatingPassword"
-          ngModel
-          #password="ngModel"
-          name="password"
-          placeholder="Password"
-        />
-        <label for="floatingPassword">Password</label>
-      </div>
+    <div class="form-floating mb-3">
+      <input
+        class="form-control"
+        required
+        id="firtName"
+        formControlName="firstName"
+        name="firtName"
+        required
+        placeholder="Oluwadamilare"
+      />
+      <label for="floatingInput">First Name</label>
 
-      <div class="form-floating mb-3">
-        <input
-          required
-          type="password"
-          class="form-control"
-          id="floatingConfirmPassword"
-          ngModel
-          #confirmPassword="ngModel"
-          name="confirmPassword"
-          placeholder="Password"
-        />
-        <label for="floatingConfirmPassword">Confirm Password</label>
+      <div
+        *ngIf="
+          createAccountForm.get('firstName')?.touched &&
+          createAccountForm.get('firstName')?.errors
+        "
+        class="text-danger text-start fst-italic mt-1"
+      >
+        First Name is required.
       </div>
-  
-    
-      <button class="w-100 btn btn-lg btn-primary mb-2" type="submit" [disabled]="loginForm.invalid">
-        Create Account
-      </button>
-      
-    </form>
-  </main>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        class="form-control"
+        required
+        id="lastName"
+        formControlName="lastName"
+        name="lastName"
+        required
+        placeholder="Odulaja"
+      />
+      <label for="floatingInput">Last Name</label>
+
+      <div
+        *ngIf="
+          createAccountForm.get('lastName')?.touched &&
+          createAccountForm.get('lastName')?.errors
+        "
+        class="text-danger  text-start fst-italic mt-1"
+      >
+        Last Name is required.
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="email"
+        class="form-control"
+        required
+        pattern="'[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'"
+        id="email"
+        formControlName="email"
+        name="email"
+        required
+        placeholder="name@example.com"
+      />
+      <label for="floatingInput">Email address</label>
+
+      <div
+        *ngIf="
+          createAccountForm.get('email')?.touched &&
+          createAccountForm.get('email')?.errors
+        "
+        class="text-danger  text-start fst-italic mt-1"
+      >
+        <p
+          *ngIf="createAccountForm.get('email')?.errors?.['required']
+   "
+        >
+          Email Address is required.
+        </p>
+        <p
+          *ngIf="createAccountForm.get('email')?.errors?.['pattern']
+   "
+        >
+          Please provide a valid email address
+        </p>
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        required
+        type="password"
+        class="form-control"
+        id="floatingPassword"
+        formControlName="password"
+        name="password"
+        placeholder="Password"
+      />
+      <label for="floatingPassword">Password</label>
+      <div
+      *ngIf="
+        createAccountForm.get('password')?.touched &&
+        createAccountForm.get('password')?.errors
+      "
+      class="text-danger  text-start fst-italic mt-1"
+    >
+      Password is required.
+    </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        required
+        type="password"
+        class="form-control"
+        id="floatingConfirmPassword"
+        formControlName="confirmPassword"
+        name="confirmPassword"
+        placeholder="Password"
+      />
+      <label for="floatingConfirmPassword">Confirm Password</label>
+      <div
+        *ngIf="
+          createAccountForm.get('confirmPassword')?.touched &&
+          createAccountForm.get('confirmPassword')?.errors
+        "
+        class="text-danger  text-start fst-italic mt-1 "
+      >
+        Confirm Password is required.
+      </div>
+    </div>
+
+    <button
+      class="w-100 btn btn-lg btn-primary mb-2"
+      type="submit"
+      [disabled]="createAccountForm.invalid"
+    >
+      Create Account
+    </button>
+  </form>
+</main>
