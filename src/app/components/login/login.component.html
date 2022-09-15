@@ -1,0 +1,44 @@
+<main class="text-center form-signin m-auto mt-5" style="width: 300px">
+  <form #loginForm="ngForm" (ngSubmit)="loginUser(loginForm)">
+    <h1 class="h3 mb-4 fw-normal">Please sign in</h1>
+
+    <div class="form-floating mb-2">
+      <input
+        type="email"
+        class="form-control"
+        required
+        id="floatingInput"
+        ngModel
+        #email="ngModel"
+        name="email"
+        required
+        placeholder="name@example.com"
+      />
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating mb-2">
+      <input
+        required
+        type="password"
+        class="form-control"
+        id="floatingPassword"
+        ngModel
+        #password="ngModel"
+        name="password"
+        placeholder="Password"
+      />
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="checkbox mb-3">
+      <label> <input type="checkbox" value="remember-me" /> Remember me </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary mb-2" type="submit" [disabled]="loginForm.invalid">
+      Sign in
+    </button>
+    <button class="w-100 btn btn-lg btn-link" routerLink="/register" (click)="$event.preventDefault()">
+      Create an account
+    </button>
+    <p class="mt-2 mb-3 text-muted">&copy; {{ year }}</p>
+  </form>
+</main>

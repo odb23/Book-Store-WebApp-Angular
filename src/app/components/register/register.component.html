@@ -1,0 +1,80 @@
+<main class="text-center form-signin m-auto mt-5" style="width: 400px">
+    <form #loginForm="ngForm" >
+      <h1 class="h3 mb-4 fw-normal">Create an account</h1>
+  
+      <div class="form-floating mb-3">
+        <input
+          class="form-control"
+          required
+          id="firtName"
+          ngModel
+          #firtName="ngModel"
+          name="firtName"
+          required
+          placeholder="Oluwadamilare"
+        />
+        <label for="floatingInput">First Name</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input
+          class="form-control"
+          required
+          id="lastName"
+          ngModel
+          #lastName="ngModel"
+          name="lastName"
+          required
+          placeholder="Odulaja"
+        />
+        <label for="floatingInput">Last Name</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="email"
+          class="form-control"
+          required
+          id="email"
+          ngModel
+          #email="ngModel"
+          name="email"
+          required
+          placeholder="name@example.com"
+        />
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input
+          required
+          type="password"
+          class="form-control"
+          id="floatingPassword"
+          ngModel
+          #password="ngModel"
+          name="password"
+          placeholder="Password"
+        />
+        <label for="floatingPassword">Password</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          required
+          type="password"
+          class="form-control"
+          id="floatingConfirmPassword"
+          ngModel
+          #confirmPassword="ngModel"
+          name="confirmPassword"
+          placeholder="Password"
+        />
+        <label for="floatingConfirmPassword">Confirm Password</label>
+      </div>
+  
+    
+      <button class="w-100 btn btn-lg btn-primary mb-2" type="submit" [disabled]="loginForm.invalid">
+        Create Account
+      </button>
+      
+    </form>
+  </main>
